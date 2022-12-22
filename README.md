@@ -11,3 +11,4 @@
 - Summary_frontEnd
   - React.js: web front 환경 구축
   - Chart.js: web 상에서 분석 결과물 시각화
+    - ```npm install react-chartjs-2```
