@@ -2,7 +2,7 @@ import React from "react";
 import "chart.js/auto";
 import { Radar } from "react-chartjs-2";
 
-function RadarChart() {
+function RadarChart(props) {
     const data = {
         labels: [
           'Eating',
@@ -12,7 +12,7 @@ function RadarChart() {
           'Coding',
         ],
         datasets: [{
-          label: 'My First Dataset',
+          label: (props.gu ? props.gu : "구를 선택하세요"),
           data: [65, 59, 66, 22, 56],
           fill: true,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',

@@ -1,4 +1,3 @@
-// import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import RadarChart from './RadarChart';
@@ -7,22 +6,19 @@ import gudong from './assets/gudong';
 import communicate from './communicate';
 
 function App() {
-  console.log(typeof gudong)
-  console.log(gudong)
-  
+  const [data, setData] = useState({})
   const [ku, setKu] = useState('')
   const [dong, setDong] = useState('')
 
-  // axios 부분은 안쓰게되면 지워도 됩니당
-  // axios
   const callApi = async()=>{
-    communicate.post('/info', {id: dong}).then((res)=>console.log(res.data));
+    communicate.post('/info', {id: dong}).then((res) => {
+      console.log(res.data)
+      setData(res.data)
+    });
   };
-
   useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `이 동네 어때?`;
-  }, []);
+    callApi();
+  }, [dong])
 
   return (
     <div className={styles.App}>
@@ -38,7 +34,10 @@ function App() {
         <div className={styles.dashBoard}>
           <div className={styles.selectBar}>
             <button
-              onClick={e => {setKu('')}}
+              onClick={e => {
+                setKu('')
+                setDong('')
+              }}
             > 초기화 </button>
             <select
               className={styles.gu}
@@ -57,7 +56,10 @@ function App() {
             </select>
             {ku === '' ? (
               <select name='d' className={styles.dong}>
-                <option>
+                <option value=''>
+                  ---- 동 ----
+                </option>
+                <option value=''>
                   구를 선택해주세요
                 </option>
               </select>
@@ -65,19 +67,21 @@ function App() {
               <select name='d' className={styles.dong}
                 onChange={(e) => setDong(e.target.value)}
               >
-                <option>
+                <option value=''>
                   ---- 동 ----
                 </option>
-                  {gudong[ku].map((dong) => {
+                  {gudong[ku].map((tong) => {
                     return(
-                      <option key={dong} value={dong}>
-                        {dong}
+                      <option key={tong} value={tong}>
+                        {tong}
                       </option>
                   )
                 })}
               </select>
             )}
-            <button onClick={callApi}> 조회 </button>
+            <button
+              onClick={callApi}
+            > 고정 </button>
         </div>
           <div className={styles.summary}>
             <p className={styles.summaryTitle}>
@@ -92,10 +96,10 @@ function App() {
             📜 Charts</div>
             <div className={styles.chartArea}>
               <div className={styles.radarChart}>
-                <RadarChart />
+                <RadarChart gu={data.gu}/>
               </div>
               <div className={styles.barChart}>
-                <BarChart />
+                <BarChart dong={data.dong}/>
               </div>
             </div>
           </div>
