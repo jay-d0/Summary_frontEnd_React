@@ -4,21 +4,21 @@ import styles from './App.module.css';
 import RadarChart from './RadarChart';
 import BarChart from './BarChart';
 import gudong from './assets/gudong';
+import communicate from './communicate';
 
 function App() {
   console.log(typeof gudong)
   console.log(gudong)
   
   const [ku, setKu] = useState('')
+  const [dong, setDong] = useState('')
+
   // axios 부분은 안쓰게되면 지워도 됩니당
   // axios
-  // const callApi = async()=>{
-  //   axios.get("/api").then((res)=>{console.log(res.data.test)});
-  // };
-  // useEffect(()=>{
-  //   callApi();
-  // }, []);
-  
+  const callApi = async()=>{
+    communicate.post('/info', {id: dong}).then((res)=>console.log(res.data));
+  };
+
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
     titleElement.innerHTML = `이 동네 어때?`;
@@ -62,7 +62,9 @@ function App() {
                 </option>
               </select>
             ):(
-              <select name='d' className={styles.dong}>
+              <select name='d' className={styles.dong}
+                onChange={(e) => setDong(e.target.value)}
+              >
                 <option>
                   ---- 동 ----
                 </option>
@@ -75,7 +77,7 @@ function App() {
                 })}
               </select>
             )}
-            <button> 조회 </button>
+            <button onClick={callApi}> 조회 </button>
         </div>
           <div className={styles.summary}>
             <p className={styles.summaryTitle}>
