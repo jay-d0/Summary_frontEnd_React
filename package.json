@@ -14,7 +14,8 @@
     "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.1.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-naver-maps": "^0.0.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

@@ -1,6 +1,6 @@
 .head {
     width: 100vw;
-    height: 30vh;
+    height: 40vh;
 
     display: flex;
     flex-direction: column;
@@ -29,13 +29,13 @@
 }
 .dashBoard {
     width: 80vw;
-    height: 100%;
+    height: 170vh;
     border-radius: 1rem;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 
     padding: 2rem;   
 }
@@ -48,9 +48,9 @@
     display: flex;
     flex-direction: row;
 
-    gap: 4rem;
+    gap: 3vw;
 
-    top: 26vh;
+    top: 35vh;
     left: 10vw;
     position: absolute;
 }
@@ -83,22 +83,90 @@ button {
     border-radius: 10px;
     background-color: #3F51B5;
 }
-.summary {
+
+.dashContainer {
+    width: 100%;
+    height: 160vh;
+
+    display: flex;
+    flex-direction: column;
+}
+.mapArea {
+    width: 100%;
+    height: 130vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mapHead {
     width: 80%;
-    height: 10vh;
+    height: 20vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+.mapHead p.mapTitle{
+    height: 0.5vh;
+    font-size: 20px;
+}
+.mapHead p.mapContent{
+    padding-left: 2.5rem;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.kkuttong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    width: 10rem;
+    height: 3rem;
+}
+.analytics{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+.summaryArr {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.summary {
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: center;
 }
-.summary p.summaryTitle{
+.summary div.summaryTitle{
     height: 0.5vh;
     font-size: 20px;
 }
-.summary p.summaryContent{
+.summary div.summaryContent{
     padding-left: 2.5rem;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 hr {
     border: 0.5px solid #BDBDBD;
@@ -125,30 +193,33 @@ hr {
     justify-content: center;
 }
 .chartArea {
-    width: 90%;
+    width: 100%;
     height: 100%;
 
     display: flex;
     flex-direction: row;
+    padding-top: 2%;
     gap: 2%;
 }
 .radarChart {
-    width: 39%;
+    width: 49%;
     height: 100%;
     
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+
+    gap: 2rem;
 }
 .barChart {
-    width: 59%;
+    width: 49%;
     height: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 }
 
 @font-face {

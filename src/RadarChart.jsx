@@ -12,7 +12,7 @@ function RadarChart(props) {
           'Coding',
         ],
         datasets: [{
-          label: (props.gu ? props.gu : "구를 선택하세요"),
+          label: "Balance of Environments",
           data: [65, 59, 66, 22, 56],
           fill: true,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -21,16 +21,6 @@ function RadarChart(props) {
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgb(255, 99, 132)'
-        }, {
-          label: 'My Second Dataset',
-          data: [55, 48, 40, 55, 42],
-          fill: true,
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgb(54, 162, 235)',
-          pointBackgroundColor: 'rgb(54, 162, 235)',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgb(54, 162, 235)'
         }]
       };
       const options = {

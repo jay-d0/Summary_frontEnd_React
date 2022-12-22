@@ -7,7 +7,7 @@ function BarChart(props) {
     const data = {
         labels: labels,
         datasets: [{
-            label: (props.dong ? props.dong : "동을 선택하세요"),
+            label: "Top 5 Keywords",
             data: [65, 59, 80, 81, 56],
             backgroundColor: [
             'rgba(255, 99, 132, 0.2)',

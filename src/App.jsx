@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import RadarChart from './RadarChart';
-import BarChart from './BarChart';
+// import BarChart from './BarChart';
 import gudong from './assets/gudong';
 import communicate from './communicate';
+import YMap from './Map';
 
 function App() {
   const [data, setData] = useState({})
   const [ku, setKu] = useState('')
   const [dong, setDong] = useState('')
+
+  const [kuku, setKuku] = useState('')
+  const [totong, setTotong] = useState('')
 
   const callApi = async()=>{
     communicate.post('/info', {id: dong}).then((res) => {
@@ -48,7 +52,9 @@ function App() {
               </option>
               {Object.keys(gudong).map((gu) => {
                 return(
-                  <option key={gu} value={gu}>
+                  <option key={gu} value={gu}
+                    selected={ku===gu && "selected"}
+                  >
                     {gu}
                   </option>
                 )
@@ -72,36 +78,51 @@ function App() {
                 </option>
                   {gudong[ku].map((tong) => {
                     return(
-                      <option key={tong} value={tong}>
+                      <option key={tong} value={tong}
+                        selected={dong===tong && "selected"}
+                      >
                         {tong}
                       </option>
                   )
                 })}
               </select>
             )}
-            <button
-              onClick={callApi}
-            > 고정 </button>
-        </div>
-          <div className={styles.summary}>
-            <p className={styles.summaryTitle}>
-              📜 Summary</p>
-            <p className={styles.summaryContent}>
-              temp: summary space
-            </p>
           </div>
-          <hr />
-          <div className={styles.charts}>
-            <div className={styles.chartTitle}>
-            📜 Charts</div>
-            <div className={styles.chartArea}>
-              <div className={styles.radarChart}>
-                <RadarChart gu={data.gu}/>
+          <div className={styles.dashContainer}>
+            <div style={{paddingBottom:'1rem'}} className={styles.mapArea}>  
+              <div className={styles.mapHead}>
+                <p className={styles.mapTitle}>
+                  📜 Map</p>
+                <p className={styles.mapContent}>
+                  {kuku} {totong}
+                </p>
               </div>
-              <div className={styles.barChart}>
-                <BarChart dong={data.dong}/>
+              <YMap methods={{ku, setKu, dong, setDong, setKuku, setTotong}} />
+            </div>
+
+            <hr />
+            
+            <div className={styles.analytics}>
+              <div className={styles.charts}>
+                <div className={styles.chartArea}>
+                  <div className={styles.radarChart}>
+                    <div className={styles.chartTitle}>
+                    📜 Charts</div>
+                    <RadarChart gu={data.gu}/>
+                  </div>
+                  <div className={styles.barChart}>
+                    <div className={styles.summary}>
+                      <div className={styles.summaryTitle}>
+                        📜 Summary</div>
+                      <div className={styles.summaryContent}>
+                        temp: summary space
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
