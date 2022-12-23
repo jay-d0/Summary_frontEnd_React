@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import geoJson from './assets/map'
+import geoJson from './assets/new_map'
 
 const { naver } = window;
 function YMap(props) {
@@ -51,7 +51,7 @@ function YMap(props) {
             
             if (kudong !== '서울특별시  '){
                 map.data._features.map(f => {
-                  if (f.getProperty('aria1') === kudong)  {
+                  if (f.getProperty('EMD_NM') === kudong)  {
                     f.setProperty('focus', true);
                     if(focus[0]) {
                         map.data._features[focus[0]].setProperty('focus', false)
@@ -62,28 +62,31 @@ function YMap(props) {
                 })   
             }
 
-            map.data.addListener('click', function(e) {
-                var feature = e.feature,
-                    regionName = feature.getProperty('aria1');
-
-                    setKu(regionName.split(' ')[1])
-                    setDong(regionName.split(' ')[2])
-
-                if (feature.getProperty('focus') !== true) {
-                    feature.setProperty('focus', true);
-                    if (focus[0]) {
-                        map.data._features[focus[0]].setProperty('focus', false)
+            try {
+                map.data.addListener('click', function(e) {
+                    var feature = e.feature,
+                        regionName = feature.getProperty('EMD_NM');
+                        
+                        setKu(regionName.split(' ')[1])
+                        setDong(regionName.split(' ')[2])
+                        
+                    if (feature.getProperty('focus') !== true) {
+                        feature.setProperty('focus', true);
+                        if (focus[0]) {
+                            map.data._features[focus[0]].setProperty('focus', false)
+                        }
+                        focus = [map.data._features.indexOf(e.feature)]
+                    } else {
+                        feature.setProperty('focus', false);
+                        focus = []
                     }
-                    focus = [map.data._features.indexOf(e.feature)]
-                } else {
-                    feature.setProperty('focus', false);
-                    focus = []
-                }
-            });
+                });
+            } catch {}
+
 
             map.data.addListener('mouseover', function(e) {
                 var feature = e.feature,
-                    regionName = feature.getProperty('aria1');
+                    regionName = feature.getProperty('EMD_NM');
                     
                     setKuku(regionName.split(' ')[1])
                     setTotong(regionName.split(' ')[2])

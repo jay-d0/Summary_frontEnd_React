@@ -23,6 +23,11 @@ function App() {
   useEffect(() => {
     callApi();
   }, [dong])
+  function error() {
+    alert("데이터가 없는 지역입니다!");
+    setKu('서대문구');
+    setDong('연희동');
+  }
 
   return (
     <div className={styles.App}>
@@ -76,15 +81,20 @@ function App() {
                 <option value=''>
                   ---- 동 ----
                 </option>
-                  {gudong[ku].map((tong) => {
+                {
+                  ( ku ? (
+                  gudong[ku].map((tong) => {
                     return(
                       <option key={tong} value={tong}
                         selected={dong===tong && "selected"}
                       >
                         {tong}
                       </option>
-                  )
-                })}
+                    )
+                  })) : (
+                    error()
+                  ))
+                }
               </select>
             )}
           </div>
